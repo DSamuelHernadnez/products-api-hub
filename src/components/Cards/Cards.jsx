@@ -1,18 +1,17 @@
 import Card from '../Card/Card';
 import styles from './Cards.module.css';
 
-const Cards = ({ recipes, onClose }) => {
+const Cards = ({ products}) => {
    return (
       <div className={styles.cardsGrid}>
-         {recipes?.map((recipe) => (
+         {products?.map((product) => (
             <Card
-               key={recipe.id}
-               id={recipe.id}
-               name={recipe.name}
-               image={recipe.image}
-               difficulty={recipe.difficulty}
-               rating={recipe.rating}
-               onClose={onClose} 
+               key={product.id}
+               id={product.id}
+               title={product.title}
+               image={product.thumbnail} 
+               price={product.price}
+               category={product.category}
             />
          ))}
       </div>

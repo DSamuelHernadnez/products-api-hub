@@ -6,7 +6,7 @@
   min-height: 100vh;
   padding: 2rem;
   position: relative;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-primary, #0f172a);
 }
 
 .ambientGlow {
@@ -29,12 +29,12 @@
    z-index: 10;
 }
 
-/* Estilo elegante para el botón RECETARIO */
+/* Estilo elegante para el botón CATÁLOGO */
 .recetarioBtn {
    display: inline-block;
    padding: 0.75rem 1.5rem;
    background-color: transparent;
-   color: #f3f4f6; /* O ajusta según tu paleta */
+   color: #f3f4f6;
    border: 1px solid rgba(255, 255, 255, 0.2);
    border-radius: 4px;
    font-family: inherit;
@@ -45,7 +45,7 @@
 }
 
 .recetarioBtn:hover {
-   background-color: #f59e0b; /* Color azafrán/acento característico */
+   background-color: #f59e0b;
    color: #0f172a;
    border-color: #f59e0b;
    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
@@ -53,22 +53,22 @@
 
 /* Tarjeta Principal */
 .heroCard {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-surface, #1e293b);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  border-radius: 8px;
   width: 100%;
   max-width: 800px;
   position: relative;
   z-index: 1;
   overflow: hidden;
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Header y Hero Image */
 .header {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .imageWrapper {
@@ -87,7 +87,7 @@
 .imageOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 0%, var(--bg-surface) 100%);
+  background: linear-gradient(to bottom, transparent 0%, #1e293b 100%);
 }
 
 /* Títulos */
@@ -105,7 +105,7 @@
 }
 
 .subtitle {
-  color: var(--accent-color);
+  color: #f59e0b;
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -118,19 +118,19 @@
   gap: 0.5rem;
   font-family: monospace;
   font-size: 0.85rem;
-  color: var(--text-secondary);
-  background-color: var(--bg-primary);
+  color: #94a3b8;
+  background-color: #0f172a;
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .statusDot {
   width: 8px;
   height: 8px;
-  background-color: var(--accent-color);
+  background-color: #f59e0b;
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--accent-color);
+  box-shadow: 0 0 8px #f59e0b;
 }
 
 /* Contenido y Secciones */
@@ -142,7 +142,7 @@
 }
 
 .sectionTitle {
-  color: var(--text-muted);
+  color: #64748b;
   font-family: monospace;
   font-size: 0.9rem;
   margin-bottom: 1rem;
@@ -150,45 +150,14 @@
 }
 
 .introText {
-  color: var(--text-primary);
+  color: #f3f4f6;
   font-size: 1.1rem;
   line-height: 1.7;
 }
 
 .brand {
-  color: var(--accent-color);
+  color: #f59e0b;
   font-weight: 700;
-}
-
-/* Grid de Categorías (Skills adaptado) */
-.tagGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.tag {
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  padding: 1rem;
-  border-radius: var(--radius-sm);
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  transition: var(--transition-smooth);
-}
-
-.tag span {
-  color: var(--accent-color);
-  font-family: monospace;
-}
-
-.tag:hover {
-  border-color: var(--accent-color);
-  transform: translateX(4px);
 }
 
 /* Footer */
@@ -197,18 +166,18 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   background-color: rgba(0, 0, 0, 0.2);
 }
 
 .authorTag, .versionTag {
   font-family: monospace;
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: #64748b;
 }
 
 .authorTag {
-  color: var(--accent-color);
+  color: #f59e0b;
 }
 
 /* Decoración */
@@ -218,7 +187,7 @@
   right: 0;
   width: 30px;
   height: 30px;
-  border-bottom: 2px solid var(--accent-color);
-  border-right: 2px solid var(--accent-color);
+  border-bottom: 2px solid #f59e0b;
+  border-right: 2px solid #f59e0b;
   margin: 1.5rem;
 }

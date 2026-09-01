@@ -1,6 +1,9 @@
 // Types de acciones
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 export const DELETE_PRODUCTS = 'DELETE_PRODUCTS';
+export const GET_BY_ID = 'GET_BY_ID';
+export const CREATE_PRODUCTS = 'CREATE_PRODUCTS';
+export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';
 
 // Action Creator para guardar todos los productos obtenidos de GET /products
 export const getAllProductsAction = (products) => {
@@ -15,5 +18,29 @@ export const deleteProductsAction = (id) => {
    return {
       type: DELETE_PRODUCTS,
       payload: id,
+   };
+};
+
+// Action Creator para obtener un producto por ID
+export const getByAction = (id) => { 
+   return {
+      type: GET_BY_ID,
+      payload: id,
+   };
+};
+
+// Action Creator para crear un producto
+export const createProductsAction = (products) => {
+   return { 
+      type: CREATE_PRODUCTS,
+      payload: products,
+   };
+};
+
+// Action Creator para buscar producto
+export const searchProductsAction = (productsQuery) => {
+   return {
+      type: SEARCH_PRODUCTS,
+      payload: productsQuery,
    };
 };

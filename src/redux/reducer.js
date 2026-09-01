@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, DELETE_PRODUCTS } from './actions';
+import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, /*GET_BY_ID, SEARCH_PRODUCTS, CREATE_PRODUCTS*/ } from './actions';
 
 const initialState = {
    products: [], // Estado global inicial donde almacenamos todos los productos

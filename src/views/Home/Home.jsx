@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Cards from '../../components/Cards/Cards';
-import { getAllProductsAction, deleteProductsAction } from '../../redux/actions';
+import { getAllProductsAction  } from '../../redux/actions';
 import styles from './Home.module.css';
 
 const Home = () => {
@@ -19,26 +19,15 @@ const Home = () => {
          });
    }, [dispatch]);
 
-   // Eliminar un producto
-   const onClose = (id) => {
-      fetch(`https://dummyjson.com/products/${id}`, {
-         method: 'DELETE',
-      })
-         .then((res) => res.json())
-         .then(() => {
-            dispatch(deleteProductsAction(id));
-         });
-   };
-
    return (
       <main className={styles.homeContainer}>
          <header className={styles.homeHeader}>
             <h1 className={styles.homeTitle}>EXPLORA NUESTROS PRODUCTOS</h1>
             <p className={styles.homeSubtitle}>Calidad y variedad excepcional</p>
          </header>
-         
+
          {/* Pasamos los productos y la función onClose hacia Cards */}
-         <Cards products={products} onClose={onClose} />
+         <Cards products={products}/>
       </main>
    );
 };

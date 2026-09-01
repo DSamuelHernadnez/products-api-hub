@@ -6,6 +6,7 @@
    display: flex;
    flex-direction: column;
    transition: all 0.3s ease;
+   position: relative;
 }
 
 .cardContainer:hover {
@@ -14,11 +15,40 @@
    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(245, 158, 11, 0.1);
 }
 
+.closeBtn {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   background-color: rgba(15, 23, 42, 0.85);
+   color: #ffffff;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   border-radius: 50%;
+   width: 30px;
+   height: 30px;
+   font-weight: bold;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 10;
+   transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+   background-color: #ef4444;
+   border-color: #ef4444;
+   transform: scale(1.1);
+}
+
 .cardImageWrapper {
    width: 100%;
-   height: 200px;
+   height: 220px;
+   background-color: #0f172a;
    overflow: hidden;
    position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .cardImg {
@@ -41,28 +71,40 @@
 }
 
 .cardName {
-   font-size: 1.2rem;
+   font-size: 1.15rem;
    font-weight: 700;
    color: #ffffff;
    margin-bottom: 1rem;
    letter-spacing: 0.5px;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   height: 2.8em; /* Altura fija para alinear nombres de 1 o 2 líneas */
 }
 
 .cardInfo {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   font-size: 0.9rem;
+   font-size: 0.85rem;
    color: #94a3b8;
-   margin-bottom: 1.5rem;
+   margin-bottom: 1.25rem;
    border-top: 1px solid rgba(255, 255, 255, 0.05);
    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
    padding: 0.75rem 0;
 }
 
-.rating {
+.category {
+   text-transform: capitalize;
+   background-color: rgba(255, 255, 255, 0.05);
+   padding: 0.25rem 0.5rem;
+   border-radius: 4px;
+}
+
+.price {
    color: #f59e0b;
-   font-weight: 600;
+   font-weight: 700;
+   font-size: 1.1rem;
 }
 
 .detailBtn {
@@ -88,32 +130,3 @@
    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
 }
 
-.cardContainer {
-   position: relative; /* Importante para posicionar el botón de forma absoluta */
-   /* ... tus demás estilos previos ... */
-}
-
-.closeBtn {
-   position: absolute;
-   top: 10px;
-   right: 10px;
-   background-color: rgba(15, 23, 42, 0.8);
-   color: #ffffff;
-   border: 1px solid rgba(255, 255, 255, 0.2);
-   border-radius: 50%;
-   width: 30px;
-   height: 30px;
-   font-weight: bold;
-   cursor: pointer;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   z-index: 10;
-   transition: all 0.2s ease;
-}
-
-.closeBtn:hover {
-   background-color: #ef4444; /* Rojo al pasar el cursor */
-   border-color: #ef4444;
-   transform: scale(1.1);
-}
