@@ -4,8 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 // Vistas
 import LandingPage from './views/LandingPage/LandingPage';
 import Home from './views/Home/Home';
-import CreateRecipe from './views/CreateRecipe/CreateRecipe';
-import Detail from './views/Detail/Detail';
+// import CreateProducts from './views/CreateProducts/CreateProducts';
+// import Detail from './views/Detail/Detail';
 
 // Componentes
 import Nav from './components/Nav/NavBar';
@@ -24,7 +24,7 @@ function App() {
          <Routes>
             <Route path='/' element={<LandingPage />} />
             <Route path="/home" element={<Home />} />
-            <Route path='/createRecipe' element={<h1> Welcome To CreateRecipe </h1>} />
+            <Route path='/createProducts' element={<h1> Welcome To CreateProducts </h1>} />
             <Route path='/detail/:id' element={<h1> Welcome To detail </h1>} />
          </Routes>
       </div>

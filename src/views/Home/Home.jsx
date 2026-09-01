@@ -1,83 +1,44 @@
-// import { useEffect, useState } from 'react';
-// import Cards from '../../components/Cards/Cards';
-// import styles from './Home.module.css';
-
-// const Home = () => {
-//    const [recipes, setRecipes] = useState([]);
-
-//    useEffect(() => {
-//       fetch('https://dummyjson.com/recipes')
-//          .then((res) => res.json())
-//          .then((data) => {
-//             const recipesArray = data.recipes || data;
-//             if (Array.isArray(recipesArray) && recipesArray.length > 0) {
-//                setRecipes(recipesArray);
-//             } 
-//          })
-//       return () => setRecipes([]);
-//    }, []);
-
-//    // Función para eliminar/cerrar una tarjeta
-//    const onClose = (id) => {
-//       const filteredRecipes = recipes.filter((recipe) => recipe.id !== id);
-//       setRecipes(filteredRecipes);
-//    };
-
-//    return (
-//       <main className={styles.homeContainer}>
-//          <header className={styles.homeHeader}>
-//             <h1 className={styles.homeTitle}>EXPLORA NUESTRAS RECETAS</h1>
-//             <p className={styles.homeSubtitle}>Alta cocina y sabores excepcionales</p>
-//          </header>
-         
-//          {/* Pasamos la función onClose hacia Cards */}
-//          <Cards recipes={recipes} onClose={onClose} />
-//       </main>
-//    );
-// };
-
-// export default Home;
-
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Cards from '../../components/Cards/Cards';
-import { getAllRecipesAction, deleteRecipeAction } from '../../redux/actions';
+import { getAllProductsAction, deleteProductsAction } from '../../redux/actions';
 import styles from './Home.module.css';
 
 const Home = () => {
-   // Leemos las recetas del estado global
-   const recipes = useSelector((state) => state.recipes);
+   // Leemos los productos del estado global
+   const products = useSelector((state) => state.products);
    const dispatch = useDispatch();
 
-   // Obtener todas las recetas
+   // Obtener todos los productos desde la API de DummyJSON
    useEffect(() => {
-      fetch('https://dummyjson.com/recipes')
+      fetch('https://dummyjson.com/products')
          .then((res) => res.json())
          .then((data) => {
-            dispatch(getAllRecipesAction(data.recipes));
+            // DummyJSON devuelve los productos dentro de la propiedad "products"
+            dispatch(getAllProductsAction(data.products));
          });
    }, [dispatch]);
 
-   // Eliminar una receta
+   // Eliminar un producto
    const onClose = (id) => {
-      fetch(`https://dummyjson.com/recipes/${id}`, {
+      fetch(`https://dummyjson.com/products/${id}`, {
          method: 'DELETE',
       })
          .then((res) => res.json())
          .then(() => {
-            dispatch(deleteRecipeAction(id));
+            dispatch(deleteProductsAction(id));
          });
    };
 
    return (
       <main className={styles.homeContainer}>
          <header className={styles.homeHeader}>
-            <h1 className={styles.homeTitle}>EXPLORA NUESTRAS RECETAS</h1>
-            <p className={styles.homeSubtitle}>Alta cocina y sabores excepcionales</p>
+            <h1 className={styles.homeTitle}>EXPLORA NUESTROS PRODUCTOS</h1>
+            <p className={styles.homeSubtitle}>Calidad y variedad excepcional</p>
          </header>
          
-         {/* Pasamos la función onClose hacia Cards */}
-         <Cards recipes={recipes} onClose={onClose} />
+         {/* Pasamos los productos y la función onClose hacia Cards */}
+         <Cards products={products} onClose={onClose} />
       </main>
    );
 };

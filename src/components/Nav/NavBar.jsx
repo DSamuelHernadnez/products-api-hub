@@ -16,7 +16,7 @@ const Nav = () => {
             </NavLink>
 
             <NavLink to="/create" className={({ isActive }) => isActive ? styles.activeLink : ""}>
-               <button className={styles.navBtn}>CREAR RECETA</button>
+               <button className={styles.navBtn}>CREAR PRODUCTO</button>
             </NavLink>
          </nav>
 
@@ -30,3 +30,4 @@ const Nav = () => {
 };
 
 export default Nav;
+

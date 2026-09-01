@@ -1,22 +1,22 @@
-import { GET_ALL_RECIPES, DELETE_RECIPE } from './actions';
+import { GET_ALL_PRODUCTS, DELETE_PRODUCTS } from './actions';
 
 const initialState = {
-   recipes: [], // Estado global inicial donde almacenamos todas las recetas
+   products: [], // Estado global inicial donde almacenamos todos los productos
 };
 
 const rootReducer = (state = initialState, action) => {
    switch (action.type) {
-      case GET_ALL_RECIPES:
+      case GET_ALL_PRODUCTS:
          return {
             ...state,
-            recipes: action.payload,
+            products: action.payload,
          };
 
-      case DELETE_RECIPE:
+      case DELETE_PRODUCTS:
          return {
             ...state,
-            // Filtramos el estado global removiendo la receta cuyo id coincida con el payload
-            recipes: state.recipes.filter((recipe) => recipe.id !== action.payload),
+            // Filtramos el estado global removiendo el producto cuyo id coincida con el payload
+            products: state.products.filter((product) => product.id !== action.payload),
          };
 
       default:
