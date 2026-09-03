@@ -13,6 +13,16 @@ export const getAllProductsAction = (products) => {
    };
 };
 
+// Action Creator que consume la API
+export const getProducts = () => {
+   return (dispatch) => {
+      fetch('https://dummyjson.com/products')
+         .then((response) => response.json())
+         .then((data) => {
+            dispatch(getAllProductsAction(data.products));
+         })
+   };
+};
 // Action Creator para eliminar el producto del estado global tras el DELETE /products/:id
 export const deleteProductsAction = (id) => {
    return {
@@ -22,7 +32,7 @@ export const deleteProductsAction = (id) => {
 };
 
 // Action Creator para obtener un producto por ID
-export const getByAction = (id) => { 
+export const getByAction = (id) => {
    return {
       type: GET_BY_ID,
       payload: id,
@@ -31,7 +41,7 @@ export const getByAction = (id) => {
 
 // Action Creator para crear un producto
 export const createProductsAction = (products) => {
-   return { 
+   return {
       type: CREATE_PRODUCTS,
       payload: products,
    };

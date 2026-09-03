@@ -1,33 +1,31 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Cards from '../../components/Cards/Cards';
-import { getAllProductsAction  } from '../../redux/actions';
+import { getProducts } from '../../redux/actions';
 import styles from './Home.module.css';
 
 const Home = () => {
-   // Leemos los productos del estado global
+
    const products = useSelector((state) => state.products);
    const dispatch = useDispatch();
 
-   // Obtener todos los productos desde la API de DummyJSON
    useEffect(() => {
-      fetch('https://dummyjson.com/products')
-         .then((res) => res.json())
-         .then((data) => {
-            dispatch(getAllProductsAction(data.products));
-         });
+      dispatch(getProducts());
    }, [dispatch]);
-
 
    return (
       <main className={styles.homeContainer}>
          <header className={styles.homeHeader}>
-            <h1 className={styles.homeTitle}>EXPLORA NUESTROS PRODUCTOS</h1>
-            <p className={styles.homeSubtitle}>Calidad y variedad excepcional</p>
+            <h1 className={styles.homeTitle}>
+               EXPLORA NUESTROS PRODUCTOS
+            </h1>
+
+            <p className={styles.homeSubtitle}>
+               Calidad y variedad excepcional
+            </p>
          </header>
 
-         {/* Pasamos los productos y la función onClose hacia Cards */}
-         <Cards products={products}/>
+         <Cards products={products} />
       </main>
    );
 };
