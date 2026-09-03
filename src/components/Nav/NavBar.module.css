@@ -26,6 +26,11 @@
   text-transform: uppercase;
 }
 
+.brandWrapper a {
+   text-decoration: none;
+   color: inherit;
+}
+
 .linksGroup {
   display: flex;
   align-items: center;
@@ -110,7 +115,30 @@
   transition: all 0.3s ease;
 }
 
-.logoutBtn:hover {
-  background-color: #d32f2f;
-  color: #fff;
+/* Estilo interactivo para el Logo inspirado en el botón de salida */
+.brandLink {
+   display: inline-block;
+   text-decoration: none;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+   padding: 0.4rem 0.8rem;
+   border-radius: 4px;
+   transition: all 0.3s ease;
+}
+
+.brandLogo {
+   font-family: monospace;
+   font-size: 1rem;
+   font-weight: 700;
+   color: #f3f4f6;
+   letter-spacing: 1px;
+   transition: color 0.3s ease;
+}
+
+.brandLink:hover {
+   border-color: #f59e0b;
+   background-color: rgba(245, 158, 11, 0.1);
+}
+
+.brandLink:hover .brandLogo {
+   color: #f59e0b;
 }

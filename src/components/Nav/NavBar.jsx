@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './NavBar.module.css';
 
@@ -7,7 +7,9 @@ const Nav = () => {
    return (
       <header className={styles.navContainer}>
          <div className={styles.brandWrapper}>
-            <span className={styles.brandLogo}>WorderMark</span>
+            <Link to="/" className={styles.brandLink}>
+               <span className={styles.brandLogo}>WorderMark</span>
+            </Link>
          </div>
 
          <nav className={styles.linksGroup}>
