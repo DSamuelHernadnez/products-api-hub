@@ -31,6 +31,19 @@ export const deleteProductsAction = (id) => {
    };
 };
 
+// Action Creator para eliminar un producto desde la API
+export const deleteProduct = (id) => {
+   return (dispatch) => {
+      fetch(`https://dummyjson.com/products/${id}`, {
+         method: 'DELETE',
+      })
+         .then((response) => response.json())
+         .then(() => {
+            dispatch(deleteProductsAction(id));
+         });
+   };
+};
+
 // Action Creator para obtener un producto por ID
 export const getByAction = (id) => {
    return {
