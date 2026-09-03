@@ -14,10 +14,10 @@ const Home = () => {
       fetch('https://dummyjson.com/products')
          .then((res) => res.json())
          .then((data) => {
-            // DummyJSON devuelve los productos dentro de la propiedad "products"
             dispatch(getAllProductsAction(data.products));
          });
    }, [dispatch]);
+
 
    return (
       <main className={styles.homeContainer}>
