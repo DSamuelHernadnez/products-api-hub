@@ -1,7 +1,8 @@
-import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, /*GET_BY_ID, SEARCH_PRODUCTS, CREATE_PRODUCTS*/ } from './actions';
+import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, GET_BY_ID, /*SEARCH_PRODUCTS, CREATE_PRODUCTS*/ } from './actions';
 
 const initialState = {
-   products: [], // Estado global inicial donde almacenamos todos los productos
+   products: [],
+   product: null, // Estado global inicial donde almacenamos todos los productos
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ const rootReducer = (state = initialState, action) => {
          return {
             ...state,
             products: action.payload,
+         };
+
+      case GET_BY_ID:
+         return {
+            ...state,
+            product: action.payload,
          };
 
       case DELETE_PRODUCTS:

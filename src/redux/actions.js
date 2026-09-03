@@ -39,6 +39,20 @@ export const getByAction = (id) => {
    };
 };
 
+// Obtener un producto por ID desde la API
+export const getProductByIdAction = (id) => {
+   return (dispatch) => {
+      fetch(`https://dummyjson.com/products/${id}`)
+         .then((response) => response.json())
+         .then((data) => {
+            dispatch({
+               type: GET_BY_ID,
+               payload: data,
+            });
+         });
+   };
+};
+
 // Action Creator para crear un producto
 export const createProductsAction = (products) => {
    return {
