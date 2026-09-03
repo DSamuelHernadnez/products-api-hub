@@ -8,9 +8,7 @@ const Detail = () => {
 
    const { id } = useParams();
    const dispatch = useDispatch();
-
    const product = useSelector((state) => state.product);
-
    const [activeImage, setActiveImage] = useState("");
 
    useEffect(() => {

@@ -16,7 +16,7 @@ export const getAllProductsAction = (products) => {
 // Action Creator que consume la API
 export const getProducts = () => {
    return (dispatch) => {
-      fetch('https://dummyjson.com/products')
+      fetch(`${process.env.REACT_APP_API_URL}/products`)
          .then((response) => response.json())
          .then((data) => {
             dispatch(getAllProductsAction(data.products));
@@ -34,7 +34,7 @@ export const deleteProductsAction = (id) => {
 // Action Creator para eliminar un producto desde la API
 export const deleteProduct = (id) => {
    return (dispatch) => {
-      fetch(`https://dummyjson.com/products/${id}`, {
+      fetch(`${process.env.REACT_APP_API_URL}/products/${id}`, {
          method: 'DELETE',
       })
          .then((response) => response.json())
@@ -55,7 +55,7 @@ export const getByAction = (id) => {
 // Obtener un producto por ID desde la API
 export const getProductByIdAction = (id) => {
    return (dispatch) => {
-      fetch(`https://dummyjson.com/products/${id}`)
+      fetch(`${process.env.REACT_APP_API_URL}/products/${id}`)
          .then((response) => response.json())
          .then((data) => {
             dispatch({
