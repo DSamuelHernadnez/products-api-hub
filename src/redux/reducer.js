@@ -1,7 +1,8 @@
-import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, GET_BY_ID, /*SEARCH_PRODUCTS, CREATE_PRODUCTS*/ } from './actions';
+import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, GET_BY_ID, SEARCH_PRODUCTS, /*CREATE_PRODUCTS*/ } from './actions';
 
 const initialState = {
-   products: [],
+   products: [], // Lista que va cambiando (se filtra o se eliminan elementos)
+   allProducts: [], // Copia de respaldo fija con todos los productos originales de la API
    product: null, // Estado global inicial donde almacenamos todos los productos
 };
 
@@ -11,6 +12,7 @@ const rootReducer = (state = initialState, action) => {
          return {
             ...state,
             products: action.payload,
+            allProducts : action.payload 
          };
 
       case GET_BY_ID:
@@ -24,6 +26,16 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             // Filtramos el estado global removiendo el producto cuyo id coincida con el payload
             products: state.products.filter((product) => product.id !== action.payload),
+         };
+
+         case SEARCH_PRODUCTS:
+         // Filtramos sobre la copia de respaldo (allProducts) basándonos en el texto ingresado (payload)
+         const filteredProducts = state.allProducts.filter((product) =>
+            product.title.toLowerCase().includes(action.payload.toLowerCase())
+         );
+         return {
+            ...state,
+            products: filteredProducts,
          };
 
       default:
