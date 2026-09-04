@@ -23,6 +23,7 @@ export const getProducts = () => {
          })
    };
 };
+
 // Action Creator para eliminar el producto del estado global tras el DELETE /products/:id
 export const deleteProductsAction = (id) => {
    return {
@@ -45,10 +46,10 @@ export const deleteProduct = (id) => {
 };
 
 // Action Creator para obtener un producto por ID
-export const getByAction = (id) => {
+export const getProductByIdSuccess = (product) => {
    return {
       type: GET_BY_ID,
-      payload: id,
+      payload: product,
    };
 };
 
