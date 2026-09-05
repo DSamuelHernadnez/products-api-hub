@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, GET_BY_ID, SEARCH_PRODUCTS, /*CREATE_PRODUCTS*/ } from './actions';
+import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, GET_BY_ID, SEARCH_PRODUCTS, CREATE_PRODUCTS } from './actions';
 
 const initialState = {
    products: [], // Lista que va cambiando (se filtra o se eliminan elementos)
@@ -12,7 +12,7 @@ const rootReducer = (state = initialState, action) => {
          return {
             ...state,
             products: action.payload,
-            allProducts : action.payload 
+            allProducts: action.payload
          };
 
       case GET_BY_ID:
@@ -28,7 +28,7 @@ const rootReducer = (state = initialState, action) => {
             products: state.products.filter((product) => product.id !== action.payload),
          };
 
-         case SEARCH_PRODUCTS:
+      case SEARCH_PRODUCTS:
          // Filtramos sobre la copia de respaldo (allProducts) basándonos en el texto ingresado (payload)
          const filteredProducts = state.allProducts.filter((product) =>
             product.title.toLowerCase().includes(action.payload.toLowerCase())
@@ -36,6 +36,14 @@ const rootReducer = (state = initialState, action) => {
          return {
             ...state,
             products: filteredProducts,
+         };
+         
+      case CREATE_PRODUCTS:
+         return {
+            ...state,
+            products: [...state.products, action.payload],
+            allProducts: [...state.allProducts, action.payload],
+            product: action.payload,
          };
 
       default:
