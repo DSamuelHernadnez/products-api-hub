@@ -75,6 +75,24 @@ export const createProductsAction = (products) => {
    };
 };
 
+// Action Creator asíncrono para crear un producto en la API (POST) y redirigir
+export const createProduct = (productData, navigate) => (dispatch) => {
+   fetch(`${process.env.REACT_APP_API_URL}/products`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(productData),
+   })
+      .then((response) => response.json())
+      .then((data) => {
+         
+         // 1. Actualizamos el estado global con Redux
+         dispatch(createProductsAction(data));
+
+         // 2. Redirigimos al usuario usando el hook navigate
+         navigate(`/product/${data.id}`);
+      })
+};
+
 // Action Creator para buscar producto
 export const searchProductsAction = (productsQuery) => {
    return {
