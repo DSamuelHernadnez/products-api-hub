@@ -43,6 +43,16 @@ const Form = () => {
       }
 
       dispatch(createProduct(form, navigate));
+
+      // Limpiamos el formulario y los errores para dejarlos en blanco
+      setForm({
+         title: '',
+         price: '',
+         category: '',
+         description: '',
+         image: '',
+      });
+      setErrors({});
    };
 
    return (
