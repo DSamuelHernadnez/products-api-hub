@@ -1,205 +1,166 @@
 .detailMain {
-   min-height: 100vh;
-   background-color: #0f172a;
-   color: #f3f4f6;
-   padding: 3rem 2rem;
+   min-height: calc(100vh - 80px);
+   padding: 30px 40px;
+   background-color: #121212;
+   color: #ffffff;
    display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.detailContainer {
-   width: 100%;
-   max-width: 1050px;
-   background-color: #1e293b;
-   border: 1px solid rgba(255, 255, 255, 0.1);
-   border-radius: 8px;
-   padding: 2.5rem;
-   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-   position: relative;
-}
-
-.topAction {
-   margin-bottom: 2rem;
+   flex-direction: column;
+   gap: 20px;
 }
 
 .backBtn {
-   display: inline-block;
-   padding: 0.5rem 1rem;
-   background-color: transparent;
-   color: #f3f4f6;
-   border: 1px solid rgba(255, 255, 255, 0.2);
-   border-radius: 4px;
-   font-size: 0.85rem;
+   align-self: flex-start;
+   background-color: #2a2a2a;
+   color: #ffffff;
+   border: 1px solid #3a3a3a;
+   padding: 8px 16px;
+   border-radius: 8px;
    font-weight: 600;
-   letter-spacing: 1px;
-   text-decoration: none;
-   transition: all 0.3s ease;
+   cursor: pointer;
+   transition: background-color 0.2s;
 }
 
 .backBtn:hover {
-   background-color: #f59e0b;
-   color: #0f172a;
-   border-color: #f59e0b;
-   box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+   background-color: #3a3a3a;
 }
 
-.detailContent {
+.detailContainer {
    display: grid;
-   grid-template-columns: 1.1fr 1fr;
-   gap: 3rem;
-   align-items: start;
+   grid-template-columns: 1fr 1fr;
+   gap: 40px;
+   background: #1e1e1e;
+   padding: 40px;
+   border-radius: 16px;
+   border: 1px solid #2a2a2a;
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 768px) {
-   .detailContent {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-   }
-}
-
-/* --- Estilos del Carrusel / Galería --- */
-.carouselContainer {
+/* Sección de la Imagen Única */
+.imageSection {
    display: flex;
-   flex-direction: column;
-   gap: 1rem;
-}
-
-.mainImageWrapper {
-   width: 100%;
-   height: 320px;
-   background-color: #0f172a;
-   border-radius: 6px;
-   overflow: hidden;
-   border: 1px solid rgba(255, 255, 255, 0.05);
-   display: flex;
-   align-items: center;
    justify-content: center;
+   align-items: center;
 }
 
-.productImg {
+.imageContainer {
    width: 100%;
-   height: 100%;
-   object-fit: cover;
-   transition: opacity 0.3s ease;
-}
-
-.thumbnailsContainer {
-   display: flex;
-   gap: 0.75rem;
-   overflow-x: auto;
-   padding-bottom: 0.5rem;
-}
-
-.thumbnailBtn {
-   background: none;
-   border: 2px solid rgba(255, 255, 255, 0.1);
-   border-radius: 4px;
-   width: 65px;
-   height: 65px;
-   padding: 0;
-   cursor: pointer;
+   height: 400px;
+   background-color: #252525;
+   border-radius: 12px;
    overflow: hidden;
-   flex-shrink: 0;
-   transition: all 0.2s ease;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 1px solid #333;
+   padding: 20px;
 }
 
-.thumbnailBtn img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
+.mainImage {
+   max-width: 100%;
+   max-height: 100%;
+   object-fit: contain;
 }
 
-.thumbnailBtn:hover {
-   border-color: rgba(245, 158, 11, 0.5);
-}
-
-.activeThumb {
-   border-color: #f59e0b;
-   box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
-}
-
-/* --- Información del Producto --- */
-.infoWrapper {
+/* Sección de Información */
+.infoSection {
    display: flex;
    flex-direction: column;
-   gap: 1.25rem;
+   gap: 16px;
 }
 
 .categoryBadge {
    align-self: flex-start;
-   background-color: rgba(245, 158, 11, 0.1);
-   color: #f59e0b;
-   padding: 0.35rem 0.75rem;
-   border-radius: 4px;
-   font-size: 0.8rem;
-   font-weight: 600;
+   background-color: rgba(79, 70, 229, 0.15);
+   color: #818cf8;
+   font-size: 12px;
+   font-weight: 700;
+   padding: 6px 12px;
+   border-radius: 20px;
    text-transform: uppercase;
-   letter-spacing: 1px;
-   border: 1px solid rgba(245, 158, 11, 0.2);
+   letter-spacing: 0.5px;
 }
 
 .productTitle {
-   font-size: 2rem;
+   font-size: 32px;
    font-weight: 800;
    color: #ffffff;
    line-height: 1.2;
 }
 
-.metaInfo {
+.priceContainer {
    display: flex;
-   flex-wrap: wrap;
-   gap: 1.5rem;
    align-items: center;
-   padding: 1rem 0;
-   border-top: 1px solid rgba(255, 255, 255, 0.05);
-   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+   gap: 15px;
 }
 
-.price {
-   font-size: 1.75rem;
-   font-weight: 800;
-   color: #f59e0b;
+.productPrice {
+   font-size: 28px;
+   font-weight: 700;
+   color: #34d399;
 }
 
-.rating {
-   font-size: 1rem;
+.discountBadge {
+   background-color: rgba(239, 68, 68, 0.15);
+   color: #f87171;
+   font-size: 13px;
    font-weight: 600;
-   color: #f59e0b;
+   padding: 4px 8px;
+   border-radius: 6px;
 }
 
-.stock {
-   font-size: 0.9rem;
-   color: #94a3b8;
-}
-
-.descriptionSection h3 {
-   font-family: monospace;
-   font-size: 0.85rem;
-   color: #64748b;
-   margin-bottom: 0.5rem;
-   letter-spacing: 0.05em;
-}
-
-.description {
-   font-size: 1rem;
+.productDescription {
+   font-size: 15px;
+   color: #9ca3af;
    line-height: 1.6;
-   color: #cbd5e1;
 }
 
-.loadingContainer, .errorContainer {
-   min-height: 100vh;
-   background-color: #0f172a;
+.extraDetails {
    display: flex;
    flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   color: #f3f4f6;
-   gap: 1rem;
+   gap: 10px;
+   background-color: #252525;
+   padding: 16px;
+   border-radius: 10px;
+   border: 1px solid #333;
+   margin-top: 5px;
 }
 
-.loadingText {
-   font-size: 1.2rem;
-   color: #f59e0b;
-   letter-spacing: 1px;
+.detailItem {
+   display: flex;
+   justify-content: space-between;
+   font-size: 14px;
+}
+
+.detailLabel {
+   color: #9ca3af;
+   font-weight: 500;
+}
+
+.detailValue {
+   color: #ffffff;
+   font-weight: 600;
+}
+
+.buyBtn {
+   margin-top: 10px;
+   background-color: #4f46e5;
+   color: #ffffff;
+   border: none;
+   padding: 14px;
+   border-radius: 10px;
+   font-size: 16px;
+   font-weight: 700;
+   cursor: pointer;
+   transition: background-color 0.2s;
+}
+
+.buyBtn:hover {
+   background-color: #4338ca;
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+   .detailContainer {
+      grid-template-columns: 1fr;
+   }
 }
