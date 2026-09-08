@@ -6,10 +6,9 @@ export const validateForm = (form) => {
       errors.title = 'El título es obligatorio.';
    }
 
-   if (!form.name || form.name.length < 100) {
-      errors.name = 'El nombre del producto debe tener al menos 100 caracteres.'
+   if (form.title.length > 50) {
+      errors.title = 'El titulo no puede superar los 50 caracteres'
    }
-
    // 2. Validar Precio
    if (!form.price) {
       errors.price = 'El precio es obligatorio.';
@@ -28,7 +27,7 @@ export const validateForm = (form) => {
    if (!form.image) {
       errors.image = 'La URL de la imagen es obligatoria.';
    }
-   
+
    if (form.image && !URL.canParse(form.image)) {
       errors.image = 'Por favor ingresa una URL de imagen válida.';
    }
