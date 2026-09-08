@@ -117,7 +117,7 @@ const Form = () => {
 
          <button
             type="submit"
-            disabled={Object.keys(errors).length > 0 || form.title === ''}
+            // disabled={Object.keys(errors).length > 0 || form.title === ''}
             className={styles.submitBtn}
          >
             Crear Producto
