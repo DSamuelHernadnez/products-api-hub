@@ -54,19 +54,36 @@ export const getProductByIdSuccess = (product) => {
    };
 };
 
-// Obtener un producto por ID desde la API
+// Obtener un producto por ID 
+// (buscando primero localmente en el Estado Global y luego en la API)
 export const getProductByIdAction = (id) => {
-   return (dispatch) => {
+   return (dispatch, getState) => {
+      
+      // 1. Buscamos en el estado global si ya existe el producto
+      const state = getState();
+      const foundProduct = state.allProducts.find(product => product.id === id);
+
+      // 2. Si lo encuentra en la memoria, lo manda al reducer y termina
+      if (foundProduct) {
+         dispatch({
+            type: GET_BY_ID,
+            payload: foundProduct
+         });
+         return;
+      }
+
+      // 3. Si no está en el estado, lo busca en la API con un fetch normal
       fetch(`${process.env.REACT_APP_API_URL}/products/${id}`)
-         .then((response) => response.json())
-         .then((data) => {
+         .then(response => response.json())
+         .then(data => {
             dispatch({
                type: GET_BY_ID,
-               payload: data,
+               payload: data
             });
          });
    };
 };
+
 
 // Action Creator para crear un producto
 export const createProductsAction = (products) => {
@@ -76,21 +93,22 @@ export const createProductsAction = (products) => {
    };
 };
 
-// Action Creator asíncrono para crear un producto en la API (POST) y redirigir
-export const createProduct = (productData, /*navigate*/) => (dispatch) => {
-   fetch(`${process.env.REACT_APP_API_URL}/products//add`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(productData),
-   })
-      .then((response) => response.json())
-      .then((data) => {
-         // 1. Actualizamos el estado global con Redux
-         dispatch(createProductsAction(data));
-
-         // 2. Redirigimos al usuario usando el hook navigate
-         // navigate('/Home');
-      })
+// Action Creator asíncrono para crear un producto en la API (POST)  - Mostrandola en nuestra  Home.
+export const createProduct = (productData) => (dispatch) => {
+    fetch(`${process.env.REACT_APP_API_URL}/products/add`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(productData),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            const completeProduct = {
+                ...productData,
+                id: data.id,
+            };
+            dispatch(createProductsAction(completeProduct));
+        });
+    return
 };
 
 // Action Creator para buscar producto
@@ -100,6 +118,8 @@ export const searchProductsAction = (productsQuery) => {
       payload: productsQuery,
    };
 };
+
+
 
 // Action Creator para guardar las categorías en el estado global
 export const getCategoriesAction = (categories) => {

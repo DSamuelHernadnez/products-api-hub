@@ -10,8 +10,10 @@ const Home = () => {
    const dispatch = useDispatch();
 
    useEffect(() => {
-      dispatch(getProducts());
-   }, [dispatch]);
+  if (products.length === 0) {
+         dispatch(getProducts());
+      }
+   }, [dispatch, products.length]);
 
    return (
       <main className={styles.homeContainer}>
