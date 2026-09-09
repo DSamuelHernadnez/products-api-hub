@@ -54,36 +54,38 @@ export const getProductByIdSuccess = (product) => {
    };
 };
 
+
 // Obtener un producto por ID 
 // (buscando primero localmente en el Estado Global y luego en la API)
 export const getProductByIdAction = (id) => {
-   return (dispatch, getState) => {
-      
-      // 1. Buscamos en el estado global si ya existe el producto
-      const state = getState();
-      const foundProduct = state.allProducts.find(product => product.id === id);
+    return (dispatch, getState) => {
+        const state = getState();
+        
+        // 1. Aseguramos que allProducts sea un arreglo (si es undefined, usa [])
+        const allProducts = state.allProducts || [];
 
-      // 2. Si lo encuentra en la memoria, lo manda al reducer y termina
-      if (foundProduct) {
-         dispatch({
-            type: GET_BY_ID,
-            payload: foundProduct
-         });
-         return;
-      }
+        // 2. Buscamos localmente de forma segura
+        const foundProduct = allProducts.find((product) => String(product.id) === String(id));
 
-      // 3. Si no está en el estado, lo busca en la API con un fetch normal
-      fetch(`${process.env.REACT_APP_API_URL}/products/${id}`)
-         .then(response => response.json())
-         .then(data => {
+        if (foundProduct) {
             dispatch({
-               type: GET_BY_ID,
-               payload: data
+                type: GET_BY_ID,
+                payload: foundProduct,
             });
-         });
-   };
-};
+            return;
+        }
 
+        // 3. Si no está localmente, lo pedimos a la API
+        fetch(`${process.env.REACT_APP_API_URL}/products/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch({
+                    type: GET_BY_ID,
+                    payload: data,
+                });
+            })
+    };
+};
 
 // Action Creator para crear un producto
 export const createProductsAction = (products) => {
@@ -93,7 +95,8 @@ export const createProductsAction = (products) => {
    };
 };
 
-// Action Creator asíncrono para crear un producto en la API (POST)  - Mostrandola en nuestra  Home.
+// Action Creator asíncrono para crear un producto en la API (POST) 
+//  - Mostrandola en nuestra  Home.
 export const createProduct = (productData) => (dispatch) => {
     fetch(`${process.env.REACT_APP_API_URL}/products/add`, {
         method: 'POST',
@@ -102,9 +105,11 @@ export const createProduct = (productData) => (dispatch) => {
     })
         .then((response) => response.json())
         .then((data) => {
+            
             const completeProduct = {
                 ...productData,
                 id: data.id,
+
             };
             dispatch(createProductsAction(completeProduct));
         });
@@ -118,8 +123,6 @@ export const searchProductsAction = (productsQuery) => {
       payload: productsQuery,
    };
 };
-
-
 
 // Action Creator para guardar las categorías en el estado global
 export const getCategoriesAction = (categories) => {
