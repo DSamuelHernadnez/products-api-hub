@@ -2,6 +2,8 @@
    display: flex;
    flex-direction: column;
    gap: 20px;
+   /* Margen inferior amplio para darle espacio al navegador y fuerce la apertura hacia abajo */
+   margin-bottom: 120px; 
 }
 
 .inputGroup {
@@ -26,6 +28,17 @@
    color: #ffffff;
    outline: none;
    transition: all 0.2s ease-in-out;
+}
+
+/* Estilo específico para que el selector luzca igual que los inputs y despliegue bien sus opciones */
+.formContainer select.inputField {
+   cursor: pointer;
+}
+
+.formContainer select.inputField option {
+   background-color: #2a2a2a;
+   color: #ffffff;
+   padding: 10px;
 }
 
 .inputField:focus,
@@ -75,4 +88,3 @@
    cursor: not-allowed;
    opacity: 0.8;
 }
-
