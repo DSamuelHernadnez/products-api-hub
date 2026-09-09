@@ -1,9 +1,10 @@
-import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, GET_BY_ID, SEARCH_PRODUCTS, CREATE_PRODUCTS } from './actions';
+import { GET_ALL_PRODUCTS, DELETE_PRODUCTS, GET_BY_ID, SEARCH_PRODUCTS, CREATE_PRODUCTS, GET_CATEGORIES } from './actions';
 
 const initialState = {
    products: [], // Lista que va cambiando (se filtra o se eliminan elementos)
    allProducts: [], // Copia de respaldo fija con todos los productos originales de la API
    product: null, // Estado global inicial donde almacenamos todos los productos
+   categories: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -37,13 +38,19 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             products: filteredProducts,
          };
-         
+
       case CREATE_PRODUCTS:
          return {
             ...state,
             products: [...state.products, action.payload],
             allProducts: [...state.allProducts, action.payload],
             product: action.payload,
+         };
+
+      case GET_CATEGORIES:
+         return {
+            ...state,
+            categories: action.payload, 
          };
 
       default:
