@@ -63,7 +63,7 @@ const Form = () => {
       setErrors({});
    };
 
-  return (
+   return (
       <form onSubmit={handleSubmit} className={styles.formContainer}>
          <div className={styles.inputGroup}>
             <label className={styles.label}>Título:</label>
@@ -82,6 +82,7 @@ const Form = () => {
             <input
                type="number"
                name="price"
+               min="1"
                value={form.price}
                onChange={handleChange}
                className={styles.inputField}
