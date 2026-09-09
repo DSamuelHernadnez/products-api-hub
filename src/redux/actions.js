@@ -4,6 +4,7 @@ export const DELETE_PRODUCTS = 'DELETE_PRODUCTS';
 export const GET_BY_ID = 'GET_BY_ID';
 export const CREATE_PRODUCTS = 'CREATE_PRODUCTS';
 export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
 
 // Action Creator para guardar todos los productos obtenidos de GET /products
 export const getAllProductsAction = (products) => {
@@ -97,5 +98,28 @@ export const searchProductsAction = (productsQuery) => {
    return {
       type: SEARCH_PRODUCTS,
       payload: productsQuery,
+   };
+};
+
+// Action Creator para guardar las categorías en el estado global
+export const getCategoriesAction = (categories) => {
+   return {
+      type: GET_CATEGORIES,
+      payload: categories,
+   };
+};
+
+// Action Creator asíncrono para obtener las categorías de la API
+export const fetchCategories = () => {
+   return (dispatch) => {
+      fetch(`${process.env.REACT_APP_API_URL}/products/categories`)
+         .then((response) => response.json())
+         .then((data) => {
+            const cleanCategories = data.map((category) => {
+               return typeof category === 'object' ? category.name : category; 
+            });
+            
+            dispatch(getCategoriesAction(cleanCategories));
+         });
    };
 };
