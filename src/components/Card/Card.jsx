@@ -3,7 +3,7 @@ import styles from './Card.module.css';
 import { deleteProduct } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 
-const Card = ({ id, title, image, price, category }) => {
+const Card = ({ id, title, image, price, category, description }) => {
    const dispatch = useDispatch();
    const onClose = () => {
       dispatch(deleteProduct(id));
@@ -11,24 +11,24 @@ const Card = ({ id, title, image, price, category }) => {
 
    return (
       <article className={styles.cardContainer}>
-         <button
-            onClick={onClose}
-            className={styles.closeBtn}
-            title="Eliminar producto"
-         >
+         <button onClick={onClose} className={styles.closeBtn} title="Eliminar producto">
             X
          </button>
          <div className={styles.cardImageWrapper}>
-            <img
+            <img 
                src={image}
-               alt={title}
-               className={styles.cardImg}
+               alt={title} 
+               className={styles.cardImg} 
             />
          </div>
          <div className={styles.cardContent}>
-            <h3 className={styles.cardName}>
-               {title}
-            </h3>
+            <h3 className={styles.cardName}>{title}</h3>
+            
+            {/* Agregamos la descripción corta aquí */}
+            <p className={styles.cardDescription}>
+               {description || "Sin descripción disponible."}
+            </p>
+
             <div className={styles.cardInfo}>
                <span className={styles.category}>
                   Categoría: {category}
@@ -37,10 +37,7 @@ const Card = ({ id, title, image, price, category }) => {
                   ${price}
                </span>
             </div>
-            <Link
-               to={`/product/${id}`}
-               className={styles.detailBtn}
-            >
+            <Link to={`/product/${id}`} className={styles.detailBtn}>
                VER DETALLE
             </Link>
          </div>
