@@ -1,13 +1,21 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createProduct } from '../../redux/actions';
+import { createProduct, fetchCategories } from '../../redux/actions';
 import { validateForm } from '../../utils/validateForm';
 import styles from './Form.module.css';
 
 const Form = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
+
+   // 1. Extraemos las categorías del estado global
+   const categories = useSelector((state) => state.categories);
+
+   // 2. Disparamos la acción al montar el componente para traer las categorías
+   useEffect(() => {
+      dispatch(fetchCategories());
+   }, [dispatch]);
 
    const [form, setForm] = useState({
       title: '',
@@ -55,7 +63,7 @@ const Form = () => {
       setErrors({});
    };
 
-   return (
+  return (
       <form onSubmit={handleSubmit} className={styles.formContainer}>
          <div className={styles.inputGroup}>
             <label className={styles.label}>Título:</label>
@@ -81,15 +89,22 @@ const Form = () => {
             {errors.price && <span className={styles.error}>{errors.price}</span>}
          </div>
 
+         {/* Selector de Categoría desplegable */}
          <div className={styles.inputGroup}>
             <label className={styles.label}>Categoría:</label>
-            <input
-               type="text"
+            <select
                name="category"
                value={form.category}
                onChange={handleChange}
                className={styles.inputField}
-            />
+            >
+               <option value="">Selecciona una categoría</option>
+               {categories.map((category) => (
+                  <option key={category} value={category}>
+                     {category}
+                  </option>
+               ))}
+            </select>
             {errors.category && <span className={styles.error}>{errors.category}</span>}
          </div>
 
@@ -115,11 +130,7 @@ const Form = () => {
             {errors.image && <span className={styles.error}>{errors.image}</span>}
          </div>
 
-         <button
-            type="submit"
-            // disabled={Object.keys(errors).length > 0 || form.title === ''}
-            className={styles.submitBtn}
-         >
+         <button type="submit" className={styles.submitBtn}>
             Crear Producto
          </button>
       </form>
