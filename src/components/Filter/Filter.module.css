@@ -1,0 +1,112 @@
+/* Contenedor principal del componente de filtros */
+.filterContainer {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-between;
+   gap: 15px;
+   background-color: #1e293b; /* Tono oscuro a juego con tu app */
+   padding: 16px 20px;
+   border-radius: 12px;
+   margin-bottom: 25px;
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+   border: 1px solid #334155;
+}
+
+/* Grupos individuales para cada select o input */
+.filterGroup {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.filterGroup label {
+   font-size: 0.85rem;
+   color: #94a3b8; /* Gris claro legible */
+   font-weight: 500;
+   white-space: nowrap;
+}
+
+/* Estilo para los menús desplegables (selects) */
+.selectInput {
+   background-color: #0f172a;
+   color: #f8fafc;
+   border: 1px solid #475569;
+   padding: 8px 12px;
+   border-radius: 8px;
+   font-size: 0.85rem;
+   outline: none;
+   cursor: pointer;
+   transition: border-color 0.2s;
+}
+
+.selectInput:focus {
+   border-color: #6366f1; /* Tono violeta/azul de enfoque */
+}
+
+/* Estilos para los inputs numéricos de precio */
+.inputPrice {
+   background-color: #0f172a;
+   color: #f8fafc;
+   border: 1px solid #475569;
+   padding: 8px 8px;
+   border-radius: 8px;
+   font-size: 0.85rem;
+   width: 65px;
+   outline: none;
+}
+
+.inputPrice:focus {
+   border-color: #6366f1;
+}
+
+/* Botón interno de acción (ej. Filtrar por rango de precio) */
+.btnAction {
+   background-color: #4f46e5;
+   color: #ffffff;
+   border: none;
+   padding: 8px 12px;
+   border-radius: 8px;
+   font-size: 0.85rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: background-color 0.2s;
+}
+
+.btnAction:hover {
+   background-color: #4338ca;
+}
+
+/* Botón principal de Reset */
+.resetBtn {
+   background-color: #dc2626; /* Tono rojo sutil para indicar reinicio */
+   color: #ffffff;
+   border: none;
+   padding: 8px 16px;
+   border-radius: 8px;
+   font-size: 0.85rem;
+   font-weight: 600;
+   cursor: pointer;
+   transition: background-color 0.2s;
+}
+
+.resetBtn:hover {
+   background-color: #b91c1c;
+}
+
+/* Diseño responsivo básico para pantallas pequeñas */
+@media (max-width: 768px) {
+   .filterContainer {
+      flex-direction: column;
+      align-items: stretch;
+   }
+   
+   .filterGroup {
+      width: 100%;
+      justify-content: space-between;
+   }
+   
+   .selectInput, .inputPrice {
+      flex-grow: 1;
+   }
+}
