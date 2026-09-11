@@ -6,6 +6,12 @@ export const CREATE_PRODUCTS = 'CREATE_PRODUCTS';
 export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 
+export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';
+export const FILTER_BY_PRICE_RANGE = 'FILTER_BY_PRICE_RANGE';
+export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
+export const ORDER_BY_NAME = 'ORDER_BY_NAME';
+export const RESET_FILTERS = 'RESET_FILTERS';
+
 // Action Creator para guardar todos los productos obtenidos de GET /products
 export const getAllProductsAction = (products) => {
    return {
