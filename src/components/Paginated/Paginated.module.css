@@ -1,0 +1,61 @@
+.pagination {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 8px;
+   margin: 40px 0;
+   font-family: inherit;
+}
+
+.pagination button {
+   padding: 8px 14px;
+   background-color: #ffffff;
+   color: #333333;
+   border: 1px solid #e2e8f0;
+   border-radius: 8px;
+   cursor: pointer;
+   font-size: 14px;
+   font-weight: 500;
+   transition: all 0.2s ease-in-out;
+   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Efecto al pasar el mouse por encima */
+.pagination button:hover:not(:disabled) {
+   background-color: #f8fafc;
+   border-color: #cbd5e1;
+   color: #0f172a;
+   transform: translateY(-1px);
+}
+
+/* Efecto al hacer clic */
+.pagination button:active:not(:disabled) {
+   transform: translateY(0);
+}
+
+/* Estilo para la página actual o botón activo */
+.pagination button.active, 
+.pagination .active {
+   background-color: #2563eb; /* Azul moderno */
+   color: #ffffff;
+   border-color: #2563eb;
+   box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+/* Estado deshabilitado (ej. cuando estás en la primera/última página) */
+.pagination button:disabled {
+   background-color: #f1f5f9;
+   color: #94a3b8;
+   border-color: #e2e8f0;
+   opacity: 0.7;
+   cursor: not-allowed;
+   box-shadow: none;
+   transform: none;
+}
+
+.pagination span {
+   font-size: 15px;
+   font-weight: 600;
+   color: #475569;
+   padding: 0 8px;
+}
