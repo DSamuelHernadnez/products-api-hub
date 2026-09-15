@@ -66,12 +66,14 @@ const rootReducer = (state = initialState, action) => {
 
       // 1. FILTRAR POR CATEGORÍA
       case FILTER_BY_CATEGORY:
-         const categoryFiltered = action.payload === 'All'
-            ? state.allProducts 
-            : state.allProducts.filter((product) => product.category === action.payload);
          return {
             ...state,
-            products: categoryFiltered,
+            products: action.payload === 'All'
+               ? state.allProducts
+               : state.allProducts.filter(
+                  (product) =>
+                     product.category.toLowerCase() === action.payload.toLowerCase()
+               ),
          };
 
       // 2. FILTRAR POR PRECIO MÍNIMO Y MÁXIMO
@@ -87,7 +89,7 @@ const rootReducer = (state = initialState, action) => {
             products: priceFiltered,
          };
 
-         // 3. ORDENAMIENTO POR PRECIO (Menor a mayor / Mayor a menor)
+      // 3. ORDENAMIENTO POR PRECIO (Menor a mayor / Mayor a menor)
       case ORDER_BY_PRICE:
          const sortedByPrice = [...state.products].sort((a, b) => {
             if (action.payload === 'asc') return a.price - b.price; // Menor a mayor
@@ -99,7 +101,7 @@ const rootReducer = (state = initialState, action) => {
             products: sortedByPrice,
          };
 
-         // 4. ORDENAMIENTO ALFABÉTICO (A-Z / Z-A)
+      // 4. ORDENAMIENTO ALFABÉTICO (A-Z / Z-A)
       case ORDER_BY_NAME:
          const sortedByName = [...state.products].sort((a, b) => {
             if (action.payload === 'az') return a.title.localeCompare(b.title);
@@ -111,7 +113,7 @@ const rootReducer = (state = initialState, action) => {
             products: sortedByName,
          };
 
-         // 5. BOTÓN DE RESET (Restaura todo al estado original de la API)
+      // 5. BOTÓN DE RESET (Restaura todo al estado original de la API)
       case RESET_FILTERS:
          return {
             ...state,
