@@ -6,7 +6,7 @@ const Cards = ({ products }) => {
       <div className={styles.cardsGrid}>
          {products?.map((product) => (
             <Card
-               ey={product.id}
+               Key={product.id}
                id={product.id}
                title={product.title}
                image={product.thumbnail || product.image}
