@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Filter from '../../components/Filter/Filter';
-import Cards from '../../components/Cards/Cards';
+import Paginated from '../../components/Paginated/Paginated';
 import { getProducts } from '../../redux/actions';
 import styles from './Home.module.css';
 
@@ -11,12 +11,12 @@ const Home = () => {
    const dispatch = useDispatch();
 
    useEffect(() => {
-  if (products.length === 0) {
+      if (products.length === 0) {
          dispatch(getProducts());
       }
    }, [dispatch, products.length]);
 
-return (
+   return (
       <main className={styles.homeContainer}>
          <Filter />
          <header className={styles.homeHeader}>
@@ -27,8 +27,8 @@ return (
                Calidad y variedad excepcional
             </p>
          </header>
-         {/* Insertamos los filtros únicamente Home */}
-         <Cards products={products} />
+         <Paginated products={products} />
+
       </main>
    );
 };
