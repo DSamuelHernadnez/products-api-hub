@@ -13,17 +13,18 @@ const SearchBar = () => {
    const handleChange = (event) => {
       setSearchString(event.target.value);
 
-      // Si el usuario borra todo o hace clic en la "x" nativa del buscador y redirije al Home:
+      // Si el usuario borra todo o hace clic en la "x" nativa del buscador
       if (event.target.value === '') {
          dispatch(searchProductsAction(''));
          navigate('/home');
       }
    };
 
-   // Dispara la búsqueda al hacer clic en el botón
+   // Dispara la búsqueda al hacer clic en el botón y redirige al Home
    const handleSearch = () => {
       if (searchString.length > 0) {
          dispatch(searchProductsAction(searchString));
+         navigate('/home'); // <-- ¡Agregamos esto para forzar el viaje al Home!
       }
    };
 
