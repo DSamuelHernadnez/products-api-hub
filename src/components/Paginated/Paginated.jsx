@@ -1,24 +1,32 @@
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect } from 'react'; // 1. Importamos useEffect
 import Cards from '../Cards/Cards';
 import styles from './Paginated.module.css';
 
 const Paginated = ({ products }) => {
-   const [currentPage, setCurrentPage] = useState(1); 
-   
+   const [currentPage, setCurrentPage] = useState(1);
+
    useEffect(() => {
       setCurrentPage(1);
    }, [products]);
 
-   const productsPerPage = 12;
+   const productsPerPage = 8;
    const lastIndex = currentPage * productsPerPage;
    const firstIndex = lastIndex - productsPerPage;
    const currentProducts = products.slice(firstIndex, lastIndex);
    const totalPages = Math.ceil(products.length / productsPerPage);
 
+   // Lógica de ventana deslizante de 3 en 3 
+   const maxVisiblePages = 3;
+   let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+   let endPage = startPage + maxVisiblePages - 1;
 
-   // Creamos un array con los números de página (ej. [1, 2, 3, 4...])
+   if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+   }
+
    const pageNumbers = [];
-   for (let i = 1; i <= totalPages; i++) {
+   for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(i);
    }
 
@@ -39,7 +47,7 @@ const Paginated = ({ products }) => {
          {/* Renderizamos solo los productos de la página actual */}
          <Cards products={currentProducts} />
 
-         {/* Controles de Paginación Numérica */}
+         {/* Controles de Paginación */}
          <div className={styles.pagination}>
             <button
                onClick={previousPage}
@@ -48,7 +56,13 @@ const Paginated = ({ products }) => {
                Anterior
             </button>
 
-            {/* Iteramos para mostrar los botones numéricos */}
+            {startPage > 1 && (
+               <>
+                  <button onClick={() => setCurrentPage(1)}>1</button>
+                  {startPage > 2 && <span className={styles.dots}>...</span>}
+               </>
+            )}
+
             {pageNumbers.map((number) => (
                <button
                   key={number}
@@ -61,6 +75,13 @@ const Paginated = ({ products }) => {
                   {number}
                </button>
             ))}
+
+            {endPage < totalPages && (
+               <>
+                  {endPage < totalPages - 1 && <span className={styles.dots}>...</span>}
+                  <button onClick={() => setCurrentPage(totalPages)}>{totalPages}</button>
+               </>
+            )}
 
             <button
                onClick={nextPage}
