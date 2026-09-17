@@ -23,7 +23,7 @@ export const getAllProductsAction = (products) => {
 // Action Creator que consume la API
 export const getProducts = () => {
    return (dispatch) => {
-      fetch(`${process.env.REACT_APP_API_URL}/products`)
+      fetch(`${process.env.REACT_APP_API_URL}/products?limit=0`)
          .then((response) => response.json())
          .then((data) => {
             dispatch(getAllProductsAction(data.products));
