@@ -50,11 +50,11 @@ const rootReducer = (state = initialState, action) => {
             products: filteredProducts,
          };
 
-      case CREATE_PRODUCTS:
+case CREATE_PRODUCTS:
          return {
             ...state,
-            products: [...state.products, action.payload],
-            allProducts: [...state.allProducts, action.payload],
+            products: [action.payload, ...state.products],
+            allProducts: [action.payload, ...state.allProducts],
             product: action.payload,
          };
 
