@@ -50,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
             products: filteredProducts,
          };
 
-case CREATE_PRODUCTS:
+      case CREATE_PRODUCTS:
          return {
             ...state,
             products: [action.payload, ...state.products],
@@ -66,14 +66,31 @@ case CREATE_PRODUCTS:
 
       // 1. FILTRAR POR CATEGORÍA
       case FILTER_BY_CATEGORY:
+         const selectedCategory = action.payload;
+
+         // Función auxiliar para normalizar: pasa a minúsculas, quita espacios extra y normaliza guiones/espacios
+         const normalize = (str) => {
+            return String(str)
+               .toLowerCase()
+               .trim()
+               .replace(/[-]/g, ' '); 
+         };
+
+         const normalizedSelected = normalize(selectedCategory);
+
          return {
             ...state,
-            products: action.payload === 'All'
+            products: normalizedSelected === 'all'
                ? state.allProducts
-               : state.allProducts.filter(
-                  (product) =>
-                     product.category.toLowerCase() === action.payload.toLowerCase()
-               ),
+               : state.allProducts.filter((product) => {
+                  if (!product.category) return false;
+
+                  const productCategory = typeof product.category === 'object'
+                     ? (product.category.slug || product.category.name || '')
+                     : product.category;
+
+                  return normalize(productCategory) === normalizedSelected;
+               }),
          };
 
       // 2. FILTRAR POR PRECIO MÍNIMO Y MÁXIMO
