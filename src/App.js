@@ -7,6 +7,8 @@ import Home from './views/Home/Home';
 import CreateProducts from './views/CreateProducts/CreateProducts';
 import Detail from './views/Detail/Detail';
 
+import FormEdit from './components/Form/FormEdit';
+
 // Componentes
 import Nav from './components/Nav/NavBar';
 import { useLocation } from 'react-router-dom';
@@ -26,6 +28,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/create" element={<CreateProducts />} />
             <Route path='/product/:id' element={<Detail />} />
+            <Route path="/edit-product/:id" element={<FormEdit />} />
          </Routes>
       </div>
    );
